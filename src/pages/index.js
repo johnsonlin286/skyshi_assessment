@@ -1,16 +1,16 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
-import Heading from "./components/Heading";
-import Layout from "./components/Layout";
-import ActivityItem from "./components/ActivityItem";
-import AddButton from "./components/AddButton";
+import Heading from "../components/Heading";
+import Layout from "../components/Layout";
+import ActivityItem from "../components/ActivityItem";
+import AddButton from "../components/AddButton";
 import Image from "next/image";
 import {
   fetchAllActivity,
   postNewActivity,
   deleteActivity,
 } from "@/api/activity";
-import ConfirmDelete from "./components/ConfirmDelete";
+import ConfirmDelete from "../components/ConfirmDelete";
 import { AlertContext } from "@/context/alertContext";
 
 const headingLeft = () => {
