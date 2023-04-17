@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import Header from "./Header";
+
 function Layout({ children }) {
   return (
     <>
@@ -9,7 +11,10 @@ function Layout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>{children}</main>
+      <main className="h-screen bg-gray500">
+        <Header />
+        {children}
+      </main>
     </>
   );
 }
