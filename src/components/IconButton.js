@@ -1,5 +1,9 @@
-function IconButton({ onClick, children }) {
-  return <button onClick={onClick}>{children}</button>;
+function IconButton({ elmRef, onClick, children }) {
+  return (
+    <button ref={elmRef} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
 
 export default IconButton;
