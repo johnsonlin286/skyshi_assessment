@@ -1,6 +1,8 @@
 import Head from "next/head";
 
 import Header from "./Header";
+import Alert from "./Alert";
+import Image from "next/image";
 
 function Layout({ children }) {
   return (
@@ -13,6 +15,16 @@ function Layout({ children }) {
       </Head>
       <main className="h-screen bg-gray500">
         <Header />
+        <Alert>
+          <Image
+            src={"/image/icon-alert-circle.svg"}
+            alt="icon-alert-circle"
+            width={24}
+            height={24}
+            className="mr-[10px]"
+          />
+          <p>Activity berhasil dihapus</p>
+        </Alert>
         {children}
       </main>
     </>

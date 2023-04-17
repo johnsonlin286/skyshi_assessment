@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import Heading from "./components/Heading";
 import Layout from "./components/Layout";
@@ -11,6 +11,7 @@ import {
   deleteActivity,
 } from "@/api/activity";
 import ConfirmDelete from "./components/ConfirmDelete";
+import { AlertContext } from "@/context/alertContext";
 
 const headingLeft = () => {
   return (
@@ -25,6 +26,7 @@ const headingLeft = () => {
 
 export default function Home() {
   const isMoundted = useRef(false);
+  const { visibleToggle } = useContext(AlertContext);
   const [activityData, setActivityData] = useState();
   const [pickedActivity, setPickedActivity] = useState();
 
@@ -58,6 +60,7 @@ export default function Home() {
     const updatedActivity = activityData.filter(
       (item) => item.id !== pickedActivity.id
     );
+    visibleToggle();
     setActivityData(updatedActivity);
     setPickedActivity();
   };

@@ -18,6 +18,12 @@ function ConfirmDelete({ isVisible, type, name, onConfirm, onCancel }) {
     }
   }, [isVisible, setVisible]);
 
+  useEffect(() => {
+    if (visible && backdropElm.current) {
+      backdropElm.current.addEventListener("click", onCancel);
+    }
+  }, [visible, backdropElm]);
+
   const hideConfirmModal = () => {
     if (backdropElm.current && confirmElm.current) {
       confirmElm.current.classList.add("out");
