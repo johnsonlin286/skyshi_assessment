@@ -1,6 +1,6 @@
 .btn {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   color: $white;
   border-radius: 999px;
@@ -10,6 +10,7 @@
   }
   &-secondary {
     background-color: $gray400;
+    color: $gray900;
   }
   &-danger {
     background-color: $red;

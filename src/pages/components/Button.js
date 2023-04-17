@@ -1,4 +1,4 @@
-function Button({ color, disabled, onClick, children }) {
+function Button({ color, disabled, onClick, children, className }) {
   return (
     <button
       className={`btn ${
@@ -7,7 +7,7 @@ function Button({ color, disabled, onClick, children }) {
           : color === "danger"
           ? "btn-danger"
           : "btn-primary"
-      }`}
+      } ${className || ""}`}
       disabled={disabled}
       onClick={onClick}
     >

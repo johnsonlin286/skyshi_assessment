@@ -1,0 +1,63 @@
+.fade {
+  &.backdrop {
+    animation: fadeIn 0.5s ease-in-out forwards;
+    &.out {
+      animation: fadeOut 0.5s ease-in-out 0.3s forwards;
+    }
+  }
+  &.confirm,
+  &.alert,
+  &.modal {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    animation: slideUp 0.3s ease-in-out 0.5s forwards;
+    &.out {
+      animation: slideDown 0.3s ease-in-out forwards;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  100% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+}

@@ -10,6 +10,7 @@ import {
   postNewActivity,
   deleteActivity,
 } from "@/api/activity";
+import ConfirmDelete from "./components/ConfirmDelete";
 
 const headingLeft = () => {
   return (
@@ -25,6 +26,7 @@ const headingLeft = () => {
 export default function Home() {
   const isMoundted = useRef(false);
   const [activityData, setActivityData] = useState();
+  const [pickedActivity, setPickedActivity] = useState();
 
   useEffect(() => {
     if (!isMoundted.current) {
@@ -43,12 +45,21 @@ export default function Home() {
     setActivityData((prev) => [result, ...prev]);
   };
 
-  const deleteActivityHandler = async (activityId) => {
-    const result = await deleteActivity(activityId);
+  const showConfirmDelete = (activityId, title) => {
+    setPickedActivity({ id: activityId, title: title });
+  };
+
+  const onCancelHandler = () => {
+    setPickedActivity();
+  };
+
+  const deleteActivityHandler = async () => {
+    const result = await deleteActivity(pickedActivity.id);
     const updatedActivity = activityData.filter(
-      (item) => item.id !== activityId
+      (item) => item.id !== pickedActivity.id
     );
     setActivityData(updatedActivity);
+    setPickedActivity();
   };
 
   return (
@@ -71,7 +82,7 @@ export default function Home() {
                   id={item.id}
                   title={item.title}
                   date={item.created_at}
-                  onDelete={deleteActivityHandler.bind(this, item.id)}
+                  onDelete={showConfirmDelete.bind(this, item.id, item.title)}
                 />
               </div>
             ))
@@ -90,6 +101,13 @@ export default function Home() {
           )}
         </section>
       </div>
+      <ConfirmDelete
+        isVisible={pickedActivity}
+        type="activity"
+        name={pickedActivity?.title}
+        onCancel={onCancelHandler}
+        onConfirm={deleteActivityHandler}
+      />
     </Layout>
   );
 }
