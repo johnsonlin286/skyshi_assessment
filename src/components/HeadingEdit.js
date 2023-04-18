@@ -1,5 +1,7 @@
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+
+import IconButton from "./IconButton";
 
 function HeadingEdit({ title, onDoneEdit }) {
   const inputElm = useRef();
@@ -47,18 +49,14 @@ function HeadingEdit({ title, onDoneEdit }) {
           onBlur={editButtonHandler}
         />
       )}
-      <button
-        data-cy="todo-title-edit-button"
-        className="w-6 h-6"
-        onClick={editButtonHandler}
-      >
+      <IconButton onClick={editButtonHandler}>
         <Image
           src={"/image/icon-pencil.svg"}
           alt="icon-pencil"
           width={24}
           height={24}
         />
-      </button>
+      </IconButton>
     </div>
   );
 }

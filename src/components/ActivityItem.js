@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import Link from "next/link";
 import moment from "moment/moment";
 
@@ -6,8 +5,6 @@ import Image from "next/image";
 import IconButton from "./IconButton";
 
 function ActivityItem({ id, title, date, className, onDelete }) {
-  const buttonElm = useRef(null);
-
   return (
     <div
       data-cy="activity-item"
@@ -22,7 +19,7 @@ function ActivityItem({ id, title, date, className, onDelete }) {
         <p className="text-sm text-gray800">
           {moment(date).format("D MMMM YYYY")}
         </p>
-        <IconButton elmRef={buttonElm} onClick={onDelete}>
+        <IconButton onClick={onDelete}>
           <Image
             src={"/image/icon-trash.svg"}
             alt="icon-trash"

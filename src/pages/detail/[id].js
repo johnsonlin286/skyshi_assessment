@@ -6,6 +6,7 @@ import Heading from "@/components/Heading";
 import HeadingEdit from "@/components/HeadingEdit";
 import { fetchActivity, patchActivity } from "@/api/activity";
 import AddButton from "@/components/AddButton";
+import TodoList from "@/components/TodoList";
 
 function ActivityDetailPage() {
   const router = useRouter();
@@ -50,7 +51,9 @@ function ActivityDetailPage() {
             <AddButton name="todo-add-button" onClick={() => null} />
           }
         />
-        <section>ActivityDetailPage</section>
+        <section>
+          <TodoList activityId={activityId} />
+        </section>
       </div>
     </Layout>
   );

@@ -1,6 +1,6 @@
-function IconButton({ elmRef, onClick, children }) {
+function IconButton({ onClick, children, className }) {
   return (
-    <button ref={elmRef} onClick={onClick}>
+    <button className={`${className || ""}`} onClick={onClick}>
       {children}
     </button>
   );
