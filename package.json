@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@iconify/icons-material-symbols": "^1.2.36",
+    "@iconify/icons-zondicons": "^1.2.3",
     "@iconify/react": "^4.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.22",
