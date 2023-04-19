@@ -15,8 +15,8 @@ function TodoItem({ id, title, onCheck, onDelete }) {
           <Image
             src={"/image/icon-pencil.svg"}
             alt="icon-pencil"
-            width={24}
-            height={24}
+            width={20}
+            height={20}
           />
         </IconButton>
       </div>

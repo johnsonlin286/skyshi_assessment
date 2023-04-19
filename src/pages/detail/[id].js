@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 
+import { fetchActivity, patchActivity } from "@/api/activity";
 import Layout from "@/components/Layout";
 import Heading from "@/components/Heading";
 import HeadingEdit from "@/components/HeadingEdit";
-import { fetchActivity, patchActivity } from "@/api/activity";
 import AddButton from "@/components/AddButton";
 import TodoList from "@/components/TodoList";
+import ModalAddTodo from "@/components/ModalAddTodo";
 
 function ActivityDetailPage() {
   const router = useRouter();
@@ -52,9 +53,10 @@ function ActivityDetailPage() {
           }
         />
         <section>
-          <TodoList activityId={activityId} />
+          <TodoList todos={activityData?.todo_items} />
         </section>
       </div>
+      <ModalAddTodo />
     </Layout>
   );
 }
