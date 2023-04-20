@@ -15,13 +15,35 @@ export const postNewTodo = async ({ activityId, title, priority }) => {
   }
 };
 
-export const patchTodo = async ({ todoId, title, priority, isActive }) => {
+export const patchTodo = async ({ data }) => {
   try {
-    const result = await axios.patch(`${API_URL}/${todoId}`, {
-      title: title,
-      priority: priority,
-      is_active: isActive,
+    console.log(data);
+    // const result = await axios.patch(`${API_URL}/${todoId}`, {
+    //   title: title,
+    //   priority: priority,
+    //   is_active: isActive,
+    // });
+    // return result;
+    return null;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const checkTodo = async (data) => {
+  try {
+    const result = await axios.patch(`${API_URL}/${data.id}`, {
+      is_active: data.is_active === 1 ? 0 : 1,
     });
+    return result;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const deleteTodo = async (todoId) => {
+  try {
+    const result = await axios.delete(`${API_URL}/${todoId}`);
     return result;
   } catch (error) {
     throw Error(error);

@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import Image from "next/image";
 
+import { TodoModalContext } from "@/context/todoModalContext";
 import Backdrop from "./Backdrop";
 import IconButton from "./IconButton";
 import Button from "./Button";
 import TextInput from "./TextInput";
 import PriorityOptions from "./PriorityOptions";
 
-function ModalAddTodo({ isVisible, onClose, onSave }) {
+function ModalAddTodo({ onSave }) {
+  const { isVisible, modalToggle } = useContext(TodoModalContext);
   const backdropElm = useRef(null);
   const modalElm = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -34,7 +36,7 @@ function ModalAddTodo({ isVisible, onClose, onSave }) {
       backdropElm.current.classList.add("out");
       backdropElm.current.addEventListener("animationend", () => {
         setVisible(false);
-        onClose();
+        modalToggle(false);
       });
     }
   };

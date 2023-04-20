@@ -1,8 +1,12 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Checkbox({ id, className, onChange }) {
+function Checkbox({ id, defaultChecked, className, onChange }) {
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (defaultChecked) setIsChecked(defaultChecked);
+  }, [defaultChecked]);
 
   const checkToggle = () => {
     setIsChecked(!isChecked);
