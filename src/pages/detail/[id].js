@@ -8,6 +8,7 @@ import HeadingEdit from "@/components/HeadingEdit";
 import AddButton from "@/components/AddButton";
 import TodoList from "@/components/TodoList";
 import ModalAddTodo from "@/components/ModalAddTodo";
+import { postNewTodo } from "@/api/todo";
 
 function ActivityDetailPage() {
   const router = useRouter();
@@ -17,14 +18,15 @@ function ActivityDetailPage() {
   const [activityData, setActivityData] = useState();
   const [showAddModal, setShowAddModal] = useState(false);
 
+  const getActivity = async () => {
+    const result = await fetchActivity(activityId);
+    setActivityData(result);
+  };
+
   useEffect(() => {
     if (!activityId) {
       return;
     }
-    const getActivity = async () => {
-      const result = await fetchActivity(activityId);
-      setActivityData(result);
-    };
     getActivity();
   }, [activityId]);
 
@@ -35,6 +37,11 @@ function ActivityDetailPage() {
     }));
     const result = await patchActivity(activityId, newTitle);
     return result;
+  };
+
+  const saveTodoHandler = async (todo) => {
+    const result = await postNewTodo({ activityId: activityId, ...todo });
+    getActivity();
   };
 
   return (
@@ -63,7 +70,7 @@ function ActivityDetailPage() {
       <ModalAddTodo
         isVisible={showAddModal}
         onClose={() => setShowAddModal(false)}
-        onSave={() => {}}
+        onSave={saveTodoHandler.bind(this)}
       />
     </Layout>
   );

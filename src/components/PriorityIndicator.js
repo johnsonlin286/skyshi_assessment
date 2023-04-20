@@ -15,7 +15,7 @@ function PriorityIndicator({ priority, size, className }) {
       case "high":
         setPriorityType("bg-yellow");
         break;
-      case "medium":
+      case "normal":
         setPriorityType("bg-green");
         break;
       case "low":

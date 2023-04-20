@@ -6,7 +6,7 @@ import PriorityIndicator from "./PriorityIndicator";
 const PRIORITY_DATA = [
   { id: "p1", label: "Very High", value: "very-high" },
   { id: "p2", label: "High", value: "high" },
-  { id: "p3", label: "Medium", value: "medium" },
+  { id: "p3", label: "Medium", value: "normal" },
   { id: "p4", label: "Low", value: "low" },
   { id: "p5", label: "Very Low", value: "very-low" },
 ];

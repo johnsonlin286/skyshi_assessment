@@ -11,6 +11,8 @@ function ModalAddTodo({ isVisible, onClose, onSave }) {
   const backdropElm = useRef(null);
   const modalElm = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [inputTitle, setInputTitle] = useState("");
+  const [priority, setPriority] = useState("very-high");
 
   useEffect(() => {
     if (isVisible) {
@@ -35,6 +37,21 @@ function ModalAddTodo({ isVisible, onClose, onSave }) {
         onClose();
       });
     }
+  };
+
+  const onTitleChangeHandler = (value) => {
+    setInputTitle(value);
+  };
+
+  const onPriorityChangeHandler = (value) => {
+    setPriority(value);
+  };
+
+  const onSaveHandler = () => {
+    onSave({ title: inputTitle, priority: priority });
+    setInputTitle("");
+    setPriority("very-high");
+    hideModal();
   };
 
   if (!visible) {
@@ -64,15 +81,22 @@ function ModalAddTodo({ isVisible, onClose, onSave }) {
             label="NAMA LIST ITEM"
             id="todo-title"
             placeholder="Tambahkan nama list item"
-            onChangeText={() => {}}
+            defaultValue={inputTitle}
+            onChangeText={onTitleChangeHandler.bind(this)}
           />
           <PriorityOptions
             className="w-[205px]"
-            onChange={(val) => console.log(val)}
+            onChange={onPriorityChangeHandler.bind(this)}
           />
         </div>
         <div className="flex justify-end items-center border-t border-t-gray500 py-6 px-[30px]">
-          <Button className="w-[150px]">Simpan</Button>
+          <Button
+            className="w-[150px]"
+            disabled={inputTitle.length <= 0}
+            onClick={onSaveHandler}
+          >
+            Simpan
+          </Button>
         </div>
       </div>
     </>

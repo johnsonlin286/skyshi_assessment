@@ -20,7 +20,7 @@ function TodoList({ todos }) {
     <ul>
       {todos?.map((item) => (
         <li key={item.id} className="mb-[10px]">
-          <TodoItem />
+          <TodoItem id={item.id} title={item.title} priority={item.priority} />
         </li>
       ))}
     </ul>
