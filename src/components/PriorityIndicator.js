@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function PriorityIndicator({ priority, className }) {
+function PriorityIndicator({ priority, size, className }) {
   const [priorityType, setPriorityType] = useState("");
 
   useEffect(() => {
@@ -31,9 +31,9 @@ function PriorityIndicator({ priority, className }) {
 
   return (
     <span
-      className={`block w-[10px] h-[10px] rounded-full ${priorityType} ${
-        className || ""
-      }`}
+      className={`block ${
+        size === "sm" ? "w-[10px] h-[10px]" : "w-[14px] h-[14px]"
+      } rounded-full ${priorityType} ${className || ""}`}
     />
   );
 }

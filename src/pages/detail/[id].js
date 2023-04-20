@@ -15,6 +15,7 @@ function ActivityDetailPage() {
     return router.query.id;
   }, [router]);
   const [activityData, setActivityData] = useState();
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     if (!activityId) {
@@ -49,14 +50,21 @@ function ActivityDetailPage() {
             />
           }
           rightContent={
-            <AddButton name="todo-add-button" onClick={() => null} />
+            <AddButton
+              name="todo-add-button"
+              onClick={() => setShowAddModal(true)}
+            />
           }
         />
         <section>
           <TodoList todos={activityData?.todo_items} />
         </section>
       </div>
-      <ModalAddTodo />
+      <ModalAddTodo
+        isVisible={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSave={() => {}}
+      />
     </Layout>
   );
 }

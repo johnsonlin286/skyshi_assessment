@@ -4,7 +4,9 @@ function TextInput({ id, label, placeholder, defaultValue, onChangeText }) {
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
-    setInputValue(defaultValue);
+    if (defaultValue) {
+      setInputValue(defaultValue);
+    }
   }, [defaultValue]);
 
   const onChangeHandler = (e) => {
