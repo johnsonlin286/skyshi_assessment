@@ -5,10 +5,13 @@ import TodoItem from "./TodoItem";
 import ModalAddTodo from "@/components/ModalAddTodo";
 import { postNewTodo, checkTodo, deleteTodo, patchTodo } from "@/api/todo";
 import { TodoModalContext } from "@/context/todoModalContext";
+import { SortTodoContext } from "@/context/sortTodoContext";
+import sortTodos from "@/utils/sort";
 import ConfirmDelete from "./ConfirmDelete";
 
 function TodoList({ activityId, todos, fetcUpdate }) {
   const { modalToggle } = useContext(TodoModalContext);
+  const { sortTodo } = useContext(SortTodoContext);
   const [data, setData] = useState();
   const [pickedTodo, setPickedTodo] = useState();
   const [showDelConfirm, setShowDelConfirm] = useState(false);
@@ -16,6 +19,12 @@ function TodoList({ activityId, todos, fetcUpdate }) {
   useEffect(() => {
     setData(todos);
   }, [todos]);
+
+  useEffect(() => {
+    if (!data) return;
+    const sortResult = sortTodos(sortTodo, data);
+    setData(sortResult);
+  }, [data, setData, sortTodo]);
 
   const onPatchHandler = async (pickedTodoId, name) => {
     switch (name) {
