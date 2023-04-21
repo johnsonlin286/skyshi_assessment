@@ -21,7 +21,6 @@ const headingRightContent = () => {
 };
 
 function ActivityDetailPage() {
-  const isMounted = useRef(false);
   const router = useRouter();
   const activityId = useMemo(() => {
     return router.query.id;
@@ -34,15 +33,11 @@ function ActivityDetailPage() {
   };
 
   useEffect(() => {
-    if (!isMounted.current) {
-      isMounted.current = true;
-      return;
-    }
     if (!activityId) {
       return;
     }
     getActivity();
-  }, [isMounted, activityId]);
+  }, [activityId]);
 
   const patchActivityTitle = async (newTitle) => {
     setActivityData((prev) => ({

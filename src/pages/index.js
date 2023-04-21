@@ -25,22 +25,17 @@ const headingLeft = () => {
 };
 
 export default function Home() {
-  const isMoundted = useRef(false);
   const { visibleToggle } = useContext(AlertContext);
   const [activityData, setActivityData] = useState();
   const [pickedActivity, setPickedActivity] = useState();
 
   useEffect(() => {
-    if (!isMoundted.current) {
-      isMoundted.current = true;
-      return;
-    }
     const allActivity = async () => {
       const result = await fetchAllActivity();
       setActivityData(result);
     };
     allActivity();
-  }, [isMoundted]);
+  }, []);
 
   const addNewActivityHandler = async () => {
     const result = await postNewActivity();
