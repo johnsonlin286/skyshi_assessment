@@ -12,6 +12,7 @@ function TodoItem({ id, title, priority, isActive, onPatch }) {
     <div className="flex justify-between items-center bg-white rounded-xl shadow-card py-[30px] px-7">
       <div className="flex items-center">
         <Checkbox
+          name="todo-item-checkbox"
           id={id}
           defaultChecked={isActive < 1 ? true : false}
           className="mr-[22px]"
@@ -34,7 +35,10 @@ function TodoItem({ id, title, priority, isActive, onPatch }) {
           />
         </IconButton>
       </div>
-      <IconButton onClick={onPatchHandler.bind(this, "delete")}>
+      <IconButton
+        name="todo-item-delete-button"
+        onClick={onPatchHandler.bind(this, "delete")}
+      >
         <Image
           src={"/image/icon-trash.svg"}
           alt="icon-trash"

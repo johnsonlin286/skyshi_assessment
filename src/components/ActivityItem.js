@@ -19,7 +19,7 @@ function ActivityItem({ id, title, date, className, onDelete }) {
         <p className="text-sm text-gray800">
           {moment(date).format("D MMMM YYYY")}
         </p>
-        <IconButton onClick={onDelete}>
+        <IconButton name="activity-item-delete-button" onClick={onDelete}>
           <Image
             src={"/image/icon-trash.svg"}
             alt="icon-trash"

@@ -8,30 +8,35 @@ const SORT_OPTIONS = [
     icon: "/image/icon-sort-newest.svg",
     label: "Terbaru",
     value: "newest",
+    cy: "sort-selection",
   },
   {
     id: "s2",
     icon: "/image/icon-sort-oldest.svg",
     label: "Terlama",
     value: "oldest",
+    cy: "sort-selection",
   },
   {
     id: "s3",
     icon: "/image/icon-sort-asc.svg",
     label: "A-Z",
     value: "asc",
+    cy: "todo-sort-button",
   },
   {
     id: "s4",
     icon: "/image/icon-sort-dsc.svg",
     label: "Z-A",
     value: "dsc",
+    cy: "todo-sort-button",
   },
   {
     id: "s5",
     icon: "/image/icon-sort-unfin.svg",
     label: "Belum Selesai",
     value: "unfin",
+    cy: "sort-selection",
   },
 ];
 
@@ -67,6 +72,7 @@ function SortOptions({ className }) {
 
   return (
     <div
+      data-cy="todo-sort-button"
       ref={optionsElm}
       className={`sort-options relative ${className || ""}`}
     >
@@ -86,6 +92,7 @@ function SortOptions({ className }) {
           {SORT_OPTIONS.map((item) => (
             <li
               key={item.id}
+              data-cy={item.cy}
               className="flex justify-between items-center border-b border-gray500 last-of-type:border-b-0 py-[14px] px-[20px] cursor-pointer"
               onClick={onChangeSelected.bind(this, item.value)}
             >

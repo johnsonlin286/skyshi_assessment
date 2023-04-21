@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-function Checkbox({ id, defaultChecked, className, onChange }) {
+function Checkbox({ name, id, defaultChecked, className, onChange }) {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function Checkbox({ id, defaultChecked, className, onChange }) {
   };
 
   return (
-    <div className={`relative ${className || ""}`}>
+    <div data-cy={name} className={`relative ${className || ""}`}>
       <label
         htmlFor={id}
         className={`flex justify-center items-center w-5 h-5 cursor-pointer border ${

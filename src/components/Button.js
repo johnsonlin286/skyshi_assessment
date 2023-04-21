@@ -1,6 +1,7 @@
-function Button({ color, disabled, onClick, children, className }) {
+function Button({ name, color, disabled, onClick, children, className }) {
   return (
     <button
+      data-cy={name}
       className={`btn ${
         color === "secondary"
           ? "btn-secondary"

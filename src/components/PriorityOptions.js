@@ -47,6 +47,7 @@ function PriorityOptions({ onChange, className }) {
 
   return (
     <div
+      data-cy="modal-add-priority-dropdown"
       ref={optionsElm}
       className={`select-option flex flex-col ${className || ""}`}
     >

@@ -1,6 +1,6 @@
-function IconButton({ onClick, children, className }) {
+function IconButton({ name, onClick, children, className }) {
   return (
-    <button className={`${className || ""}`} onClick={onClick}>
+    <button data-cy={name} className={`${className || ""}`} onClick={onClick}>
       {children}
     </button>
   );

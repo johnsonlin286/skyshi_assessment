@@ -79,6 +79,7 @@ function ModalAddTodo({ editTodo, clearEditTodo, onSave }) {
     <>
       <Backdrop elmRef={backdropElm} />
       <div
+        data-cy="modal-add"
         ref={modalElm}
         className="modal fixed fade flex flex-col justify-between w-[830px] h-[400px] bg-white rounded-xl shadow-card"
       >
@@ -108,6 +109,7 @@ function ModalAddTodo({ editTodo, clearEditTodo, onSave }) {
         </div>
         <div className="flex justify-end items-center border-t border-t-gray500 py-6 px-[30px]">
           <Button
+            name="modal-add-save-button"
             className="w-[150px]"
             disabled={inputTitle.length <= 0}
             onClick={onSaveHandler}

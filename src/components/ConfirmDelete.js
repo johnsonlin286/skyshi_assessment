@@ -41,8 +41,8 @@ function ConfirmDelete({ isVisible, type, name, onConfirm, onCancel }) {
 
   return (
     <>
-      <Backdrop elmRef={backdropElm} />
-      <Confirm elmRef={confirmElm}>
+      <Backdrop name="activity-item-delete-button" elmRef={backdropElm} />
+      <Confirm name="modal-delete-confirm-button" elmRef={confirmElm}>
         <Image
           src={"/image/icon-alert-triangle.svg"}
           alt="icon-alert-triangle"
@@ -57,13 +57,19 @@ function ConfirmDelete({ isVisible, type, name, onConfirm, onCancel }) {
         </div>
         <div className="flex gap-5 justify-center items-center">
           <Button
+            name="modal-delete-cancel-button"
             color="secondary"
             className="w-[150px]"
             onClick={hideConfirmModal}
           >
             Batal
           </Button>
-          <Button color="danger" className="w-[150px]" onClick={onConfirm}>
+          <Button
+            name="activity-item-delete-button"
+            color="danger"
+            className="w-[150px]"
+            onClick={onConfirm}
+          >
             Hapus
           </Button>
         </div>
