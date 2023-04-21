@@ -8,11 +8,21 @@ import Heading from "@/components/Heading";
 import HeadingEdit from "@/components/HeadingEdit";
 import AddButton from "@/components/AddButton";
 import TodoList from "@/components/TodoList";
+import SortOptions from "@/components/SortOptions";
+
+const headingRightContent = () => {
+  const { modalToggle } = useContext(TodoModalContext);
+  return (
+    <div className="flex">
+      <SortOptions className="mr-[18px]" />
+      <AddButton name="todo-add-button" onClick={() => modalToggle(true)} />
+    </div>
+  );
+};
 
 function ActivityDetailPage() {
   const isMounted = useRef(false);
   const router = useRouter();
-  const { modalToggle } = useContext(TodoModalContext);
   const activityId = useMemo(() => {
     return router.query.id;
   }, [router]);
@@ -55,12 +65,7 @@ function ActivityDetailPage() {
               onDoneEdit={patchActivityTitle.bind(this)}
             />
           }
-          rightContent={
-            <AddButton
-              name="todo-add-button"
-              onClick={() => modalToggle(true)}
-            />
-          }
+          rightContent={headingRightContent()}
         />
         <section>
           <TodoList

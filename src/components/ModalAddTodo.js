@@ -30,7 +30,7 @@ function ModalAddTodo({ editTodo, clearEditTodo, onSave }) {
       setPriority(editTodo.priority);
     } else {
       setInputTitle("");
-      setPriority("very-gigh");
+      setPriority("very-high");
     }
   }, [editTodo, setInputTitle, setPriority]);
 
