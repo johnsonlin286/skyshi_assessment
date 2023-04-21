@@ -20,7 +20,7 @@ function TodoItem({ id, title, priority, isActive, onPatch }) {
         <PriorityIndicator priority={priority} className="mr-4" />
         <strong
           className={`text-lg font-medium mr-4 ${
-            isActive < 1 ? "line-through" : ""
+            isActive < 1 ? "line-through text-gray800" : ""
           }`}
         >
           {title}

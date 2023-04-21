@@ -8,7 +8,7 @@ import Button from "./Button";
 import TextInput from "./TextInput";
 import PriorityOptions from "./PriorityOptions";
 
-function ModalAddTodo({ onSave }) {
+function ModalAddTodo({ editTodo, clearEditTodo, onSave }) {
   const { isVisible, modalToggle } = useContext(TodoModalContext);
   const backdropElm = useRef(null);
   const modalElm = useRef(null);
@@ -25,6 +25,16 @@ function ModalAddTodo({ onSave }) {
   }, [isVisible, setVisible]);
 
   useEffect(() => {
+    if (editTodo) {
+      setInputTitle(editTodo.title);
+      setPriority(editTodo.priority);
+    } else {
+      setInputTitle("");
+      setPriority("very-gigh");
+    }
+  }, [editTodo, setInputTitle, setPriority]);
+
+  useEffect(() => {
     if (visible && backdropElm.current) {
       backdropElm.current.addEventListener("click", hideModal);
     }
@@ -35,7 +45,10 @@ function ModalAddTodo({ onSave }) {
       modalElm.current.classList.add("out");
       backdropElm.current.classList.add("out");
       backdropElm.current.addEventListener("animationend", () => {
+        setInputTitle("");
+        setPriority("very-high");
         setVisible(false);
+        if (editTodo) clearEditTodo();
         modalToggle(false);
       });
     }
@@ -50,9 +63,11 @@ function ModalAddTodo({ onSave }) {
   };
 
   const onSaveHandler = () => {
-    onSave({ title: inputTitle, priority: priority });
-    setInputTitle("");
-    setPriority("very-high");
+    if (!editTodo || editTodo === null) {
+      onSave("new", { title: inputTitle, priority: priority });
+    } else {
+      onSave("edit", { ...editTodo, title: inputTitle, priority: priority });
+    }
     hideModal();
   };
 

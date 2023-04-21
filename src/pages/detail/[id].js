@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useContext } from "react";
+import { useEffect, useMemo, useState, useContext, useRef } from "react";
 import { useRouter } from "next/router";
 
 import { TodoModalContext } from "@/context/todoModalContext";
@@ -8,17 +8,15 @@ import Heading from "@/components/Heading";
 import HeadingEdit from "@/components/HeadingEdit";
 import AddButton from "@/components/AddButton";
 import TodoList from "@/components/TodoList";
-// import ModalAddTodo from "@/components/ModalAddTodo";
-// import { postNewTodo } from "@/api/todo";
 
 function ActivityDetailPage() {
+  const isMounted = useRef(false);
   const router = useRouter();
   const { modalToggle } = useContext(TodoModalContext);
   const activityId = useMemo(() => {
     return router.query.id;
   }, [router]);
   const [activityData, setActivityData] = useState();
-  // const [showAddModal, setShowAddModal] = useState(false);
 
   const getActivity = async () => {
     const result = await fetchActivity(activityId);
@@ -26,11 +24,15 @@ function ActivityDetailPage() {
   };
 
   useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
     if (!activityId) {
       return;
     }
     getActivity();
-  }, [activityId]);
+  }, [isMounted, activityId]);
 
   const patchActivityTitle = async (newTitle) => {
     setActivityData((prev) => ({
@@ -40,11 +42,6 @@ function ActivityDetailPage() {
     const result = await patchActivity(activityId, newTitle);
     return result;
   };
-
-  // const saveTodoHandler = async (todo) => {
-  //   const result = await postNewTodo({ activityId: activityId, ...todo });
-  //   getActivity();
-  // };
 
   return (
     <Layout>
@@ -70,16 +67,9 @@ function ActivityDetailPage() {
             activityId={activityId}
             todos={activityData?.todo_items}
             fetcUpdate={getActivity}
-            // addNewTodo={showAddModal}
-            // onPatch={(data, name) => console.log(data, name)}
           />
         </section>
       </div>
-      {/* <ModalAddTodo
-        isVisible={showAddModal}
-        onClose={() => setShowAddModal(false)}
-        onSave={saveTodoHandler.bind(this)}
-      /> */}
     </Layout>
   );
 }

@@ -15,16 +15,14 @@ export const postNewTodo = async ({ activityId, title, priority }) => {
   }
 };
 
-export const patchTodo = async ({ data }) => {
+export const patchTodo = async (data) => {
   try {
-    console.log(data);
-    // const result = await axios.patch(`${API_URL}/${todoId}`, {
-    //   title: title,
-    //   priority: priority,
-    //   is_active: isActive,
-    // });
-    // return result;
-    return null;
+    const result = await axios.patch(`${API_URL}/${data.id}`, {
+      title: data.title,
+      priority: data.priority,
+      is_active: data.is_active,
+    });
+    return result;
   } catch (error) {
     throw Error(error);
   }

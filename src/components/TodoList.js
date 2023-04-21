@@ -3,34 +3,66 @@ import Image from "next/image";
 
 import TodoItem from "./TodoItem";
 import ModalAddTodo from "@/components/ModalAddTodo";
-import { postNewTodo, checkTodo, deleteTodo } from "@/api/todo";
+import { postNewTodo, checkTodo, deleteTodo, patchTodo } from "@/api/todo";
 import { TodoModalContext } from "@/context/todoModalContext";
+import ConfirmDelete from "./ConfirmDelete";
 
 function TodoList({ activityId, todos, fetcUpdate }) {
   const { modalToggle } = useContext(TodoModalContext);
   const [data, setData] = useState();
+  const [pickedTodo, setPickedTodo] = useState();
+  const [showDelConfirm, setShowDelConfirm] = useState(false);
 
   useEffect(() => {
     setData(todos);
   }, [todos]);
 
-  const onPatchHandler = async (pickedTodo, name) => {
-    // console.log(pickedTodo, name);
+  const onPatchHandler = async (pickedTodoId, name) => {
     switch (name) {
       case "check":
-        const todo = data.find((item) => item.id === pickedTodo.id);
+        const todo = data.find((item) => item.id === pickedTodoId.id);
         const checkResult = await checkTodo(todo);
         return fetcUpdate();
       case "delete":
-        const deleteResult = await deleteTodo(pickedTodo.id);
+        deleteTodoHandler(pickedTodoId.id);
         return fetcUpdate();
+      case "edit":
+        editTodo(pickedTodoId.id);
+        break;
       default:
         return null;
     }
   };
 
-  const saveTodoHandler = async (todo) => {
-    const result = await postNewTodo({ activityId: activityId, ...todo });
+  const deleteTodoHandler = (todoId) => {
+    const todo = data.find((item) => item.id === todoId);
+    setPickedTodo(todo);
+    setShowDelConfirm(true);
+  };
+
+  const hideDelConfirm = () => {
+    setPickedTodo();
+    setShowDelConfirm(false);
+  };
+
+  const deleteTodoConfirm = async () => {
+    const result = await deleteTodo(pickedTodo.id);
+    setShowDelConfirm(false);
+    fetcUpdate();
+  };
+
+  const editTodo = (todoId) => {
+    const todo = data.find((item) => item.id === todoId);
+    setPickedTodo(todo);
+    modalToggle(true);
+  };
+
+  const saveTodoHandler = async (name, todo) => {
+    if (name === "new") {
+      const result = await postNewTodo({ activityId: activityId, ...todo });
+    } else if (name === "edit") {
+      const result = await patchTodo(todo);
+    }
     fetcUpdate();
   };
 
@@ -63,7 +95,18 @@ function TodoList({ activityId, todos, fetcUpdate }) {
           ))}
         </ul>
       )}
-      <ModalAddTodo onSave={saveTodoHandler} />
+      <ModalAddTodo
+        editTodo={pickedTodo}
+        clearEditTodo={() => setPickedTodo()}
+        onSave={saveTodoHandler}
+      />
+      <ConfirmDelete
+        isVisible={showDelConfirm}
+        type="todo"
+        name={pickedTodo?.title}
+        onCancel={hideDelConfirm}
+        onConfirm={deleteTodoConfirm}
+      />
     </>
   );
 }
