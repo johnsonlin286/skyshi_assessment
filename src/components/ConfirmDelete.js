@@ -5,7 +5,7 @@ import Confirm from "./Confirm";
 import Button from "./Button";
 import Backdrop from "./Backdrop";
 
-function ConfirmDelete({ isVisible, type, name, onConfirm, onCancel }) {
+function ConfirmDelete({ name, isVisible, type, title, onConfirm, onCancel }) {
   const backdropElm = useRef(null);
   const confirmElm = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -41,8 +41,8 @@ function ConfirmDelete({ isVisible, type, name, onConfirm, onCancel }) {
 
   return (
     <>
-      <Backdrop name="activity-item-delete-button" elmRef={backdropElm} />
-      <Confirm name="modal-delete-confirm-button" elmRef={confirmElm}>
+      <Backdrop data-cy="activity-item-delete-button" elmRef={backdropElm} />
+      <Confirm data-cy={name} elmRef={confirmElm}>
         <Image
           src={"/image/icon-alert-triangle.svg"}
           alt="icon-alert-triangle"
@@ -52,7 +52,7 @@ function ConfirmDelete({ isVisible, type, name, onConfirm, onCancel }) {
         <div className="text-lg text-center">
           <p>Apakah anda yakin menghapus {type}</p>
           <p>
-            <strong>“{name}”?</strong>
+            <strong>“{title}”?</strong>
           </p>
         </div>
         <div className="flex gap-5 justify-center items-center">

@@ -110,9 +110,10 @@ function TodoList({ activityId, todos, fetcUpdate }) {
         onSave={saveTodoHandler}
       />
       <ConfirmDelete
+        name="modal-delete"
         isVisible={showDelConfirm}
         type="todo"
-        name={pickedTodo?.title}
+        title={pickedTodo?.title}
         onCancel={hideDelConfirm}
         onConfirm={deleteTodoConfirm}
       />

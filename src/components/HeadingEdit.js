@@ -32,15 +32,9 @@ function HeadingEdit({ title, onDoneEdit }) {
   return (
     <div className="flex items-center">
       {!onEdit ? (
-        <h2
-          data-cy="todo-title"
-          className="text-4xl font-bold text-dark100 mr-5"
-        >
-          {inputTitle}
-        </h2>
+        <h2 className="text-4xl font-bold text-dark100 mr-5">{inputTitle}</h2>
       ) : (
         <input
-          data-cy="todo-title"
           ref={inputElm}
           value={inputTitle}
           className="text-4xl font-bold text-dark100 border-b border-b-dark100 bg-transparent focus:outline-none mr-5"
@@ -49,7 +43,7 @@ function HeadingEdit({ title, onDoneEdit }) {
           onBlur={editButtonHandler}
         />
       )}
-      <IconButton onClick={editButtonHandler}>
+      <IconButton name="todo-title" onClick={editButtonHandler}>
         <Image
           src={"/image/icon-pencil.svg"}
           alt="icon-pencil"

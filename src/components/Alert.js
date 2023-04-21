@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AlertContext } from "@/context/alertContext";
 import Backdrop from "./Backdrop";
 
-function Alert({ name, children }) {
+function Alert({ children }) {
   const { visible, visibleToggle } = useContext(AlertContext);
   const backdropElm = useRef(null);
   const alertElm = useRef(null);
@@ -42,7 +42,7 @@ function Alert({ name, children }) {
     <>
       <Backdrop elmRef={backdropElm} />
       <div
-        data-cy={name}
+        data-cy="modal-information"
         ref={alertElm}
         className="alert fade fixed flex items-center bg-white rounded-xl shadow-card w-[490px] py-[19px] px-[30px]"
       >

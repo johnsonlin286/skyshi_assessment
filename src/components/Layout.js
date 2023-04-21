@@ -15,7 +15,7 @@ function Layout({ children }) {
       </Head>
       <main className="h-screen bg-gray400">
         <Header />
-        <Alert name="modal-information">
+        <Alert>
           <Image
             src={"/image/icon-alert-circle.svg"}
             alt="icon-alert-circle"
