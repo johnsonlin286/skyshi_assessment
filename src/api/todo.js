@@ -2,17 +2,6 @@ import axios from "axios";
 
 const API_URL = "https://todo.api.devcode.gethired.id/todo-items";
 
-export const fetchAllTodos = async (activityId) => {
-  try {
-    const result = await axios.get(
-      `${API_URL}?activity_group_id=${activityId}`
-    );
-    return result;
-  } catch (error) {
-    throw Error(error);
-  }
-};
-
 export const postNewTodo = async ({ activityId, title, priority }) => {
   try {
     const result = await axios.post(API_URL, {
