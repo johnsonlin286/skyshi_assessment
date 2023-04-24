@@ -22,7 +22,7 @@ const headingLeft = () => {
 export default function Home() {
   const { visibleToggle } = useContext(AlertContext);
   const [activityData, setActivityData] = useState();
-  const [pickedActivity, setPickedActivity] = useState();
+  const [pickedActivity, setPickedActivity] = useState({});
 
   useEffect(() => {
     const allActivity = async () => {
@@ -38,11 +38,11 @@ export default function Home() {
   };
 
   const showConfirmDelete = (activityId, title) => {
-    setPickedActivity({ id: activityId, title: title });
+    setPickedActivity((prev) => ({ ...prev, id: activityId, title: title }));
   };
 
   const onCancelHandler = () => {
-    setPickedActivity();
+    setPickedActivity({});
   };
 
   const deleteActivityHandler = async () => {
@@ -52,7 +52,7 @@ export default function Home() {
     );
     visibleToggle();
     setActivityData(updatedActivity);
-    setPickedActivity();
+    setPickedActivity({});
   };
 
   return (
@@ -93,13 +93,15 @@ export default function Home() {
           )}
         </section>
       </div>
-      <ConfirmDelete
-        isVisible={pickedActivity}
-        type="activity"
-        name={pickedActivity?.title}
-        onCancel={onCancelHandler}
-        onConfirm={deleteActivityHandler}
-      />
+      {Object.keys(pickedActivity).length > 0 && (
+        <ConfirmDelete
+          isVisible={pickedActivity}
+          type="activity"
+          title={pickedActivity.title}
+          onCancel={onCancelHandler}
+          onConfirm={deleteActivityHandler}
+        />
+      )}
     </Layout>
   );
 }

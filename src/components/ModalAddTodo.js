@@ -80,7 +80,7 @@ function ModalAddTodo({ editTodo, clearEditTodo, onSave }) {
       <Backdrop elmRef={backdropElm} />
       <div
         ref={modalElm}
-        className="modal fixed fade flex flex-col justify-between w-[830px] h-[400px] bg-white rounded-xl shadow-card"
+        className="modal fixed fade flex flex-col justify-between w-[830px] h-[400px] bg-white rounded-xl shadow-card z-20"
       >
         <div className="flex justify-between items-center border-b border-b-gray500 py-6 px-[30px]">
           <h3 className="text-lg font-semibold">Tambah List Item</h3>

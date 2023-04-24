@@ -43,7 +43,7 @@ function Alert({ children }) {
       <Backdrop elmRef={backdropElm} />
       <div
         ref={alertElm}
-        className="alert fade fixed flex items-center bg-white rounded-xl shadow-card w-[490px] py-[19px] px-[30px]"
+        className="alert fade fixed flex items-center bg-white rounded-xl shadow-card w-[490px] py-[19px] px-[30px] z-20"
       >
         {children}
       </div>

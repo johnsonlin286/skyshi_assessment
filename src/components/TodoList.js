@@ -6,12 +6,14 @@ import ModalAddTodo from "@/components/ModalAddTodo";
 import { postNewTodo, checkTodo, deleteTodo, patchTodo } from "@/api/todo";
 import { TodoModalContext } from "@/context/todoModalContext";
 import { SortTodoContext } from "@/context/sortTodoContext";
+import { AlertContext } from "@/context/alertContext";
 import sortTodos from "@/utils/sort";
 import ConfirmDelete from "./ConfirmDelete";
 
 function TodoList({ activityId, todos, fetcUpdate }) {
   const { modalToggle } = useContext(TodoModalContext);
   const { sortTodo } = useContext(SortTodoContext);
+  const { visibleToggle } = useContext(AlertContext);
   const [data, setData] = useState();
   const [pickedTodo, setPickedTodo] = useState();
   const [showDelConfirm, setShowDelConfirm] = useState(false);
@@ -61,6 +63,7 @@ function TodoList({ activityId, todos, fetcUpdate }) {
   const deleteTodoConfirm = async () => {
     const result = await deleteTodo(pickedTodo.id);
     setShowDelConfirm(false);
+    visibleToggle();
     fetcUpdate();
   };
 

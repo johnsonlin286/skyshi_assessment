@@ -23,7 +23,7 @@ function Layout({ children }) {
             height={24}
             className="mr-[10px]"
           />
-          <p>Activity berhasil dihapus</p>
+          <p>Berhasil dihapus</p>
         </Alert>
         {children}
       </main>

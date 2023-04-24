@@ -1,4 +1,4 @@
-import { createContext, useCallback, useMemo, useState } from "react";
+import { createContext, useState } from "react";
 
 export const SortTodoContext = createContext({
   sortTodo: "newest" | "oldest" | "asc" | "dsc" | "unfin",

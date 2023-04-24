@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useContext, useRef } from "react";
+import { useEffect, useMemo, useState, useContext } from "react";
 import { useRouter } from "next/router";
 
 import { TodoModalContext } from "@/context/todoModalContext";
