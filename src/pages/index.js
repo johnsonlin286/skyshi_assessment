@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Heading from "../components/Heading";
 import Layout from "../components/Layout";
@@ -15,12 +15,7 @@ import { AlertContext } from "@/context/alertContext";
 
 const headingLeft = () => {
   return (
-    <h2
-      data-cy="activity-title"
-      className="text-4xl text-dark font-bold text-dark100"
-    >
-      Activity
-    </h2>
+    <h2 className="text-4xl text-dark font-bold text-dark100">Activity</h2>
   );
 };
 
@@ -88,7 +83,6 @@ export default function Home() {
             <div className="w-full flex justify-center items-center">
               <button onClick={addNewActivityHandler}>
                 <Image
-                  data-cy="activity-empty-state"
                   src={"/image/activity-empty-state.png"}
                   alt="empty-state"
                   width={767}

@@ -15,7 +15,7 @@ function TextInput({ id, label, placeholder, defaultValue, onChangeText }) {
   };
 
   return (
-    <div data-cy="modal-add-name-input" className="flex flex-col">
+    <div className="flex flex-col">
       <label htmlFor={id} className="text-xs font-semibold mb-[10px]">
         {label}
       </label>

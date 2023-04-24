@@ -79,7 +79,6 @@ function ModalAddTodo({ editTodo, clearEditTodo, onSave }) {
     <>
       <Backdrop elmRef={backdropElm} />
       <div
-        data-cy="modal-add"
         ref={modalElm}
         className="modal fixed fade flex flex-col justify-between w-[830px] h-[400px] bg-white rounded-xl shadow-card"
       >

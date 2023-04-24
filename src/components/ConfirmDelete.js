@@ -5,7 +5,7 @@ import Confirm from "./Confirm";
 import Button from "./Button";
 import Backdrop from "./Backdrop";
 
-function ConfirmDelete({ name, isVisible, type, title, onConfirm, onCancel }) {
+function ConfirmDelete({ isVisible, type, title, onConfirm, onCancel }) {
   const backdropElm = useRef(null);
   const confirmElm = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -41,8 +41,8 @@ function ConfirmDelete({ name, isVisible, type, title, onConfirm, onCancel }) {
 
   return (
     <>
-      <Backdrop data-cy="activity-item-delete-button" elmRef={backdropElm} />
-      <Confirm data-cy={name} elmRef={confirmElm}>
+      <Backdrop elmRef={backdropElm} />
+      <Confirm elmRef={confirmElm}>
         <Image
           src={"/image/icon-alert-triangle.svg"}
           alt="icon-alert-triangle"

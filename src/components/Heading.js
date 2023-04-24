@@ -13,11 +13,7 @@ function Heading({ canGoBack, leftContent, rightContent }) {
     <div className="heading flex justify-between items-center py-12">
       <div className="flex">
         {canGoBack && (
-          <button
-            data-cy="todo-back-button"
-            onClick={backBtnHandler}
-            className="w-[36px] h-[36px] mr-5"
-          >
+          <button onClick={backBtnHandler} className="w-[36px] h-[36px] mr-5">
             <Icon icon={cheveronLeft} width={36} height={36} />
           </button>
         )}

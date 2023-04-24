@@ -42,7 +42,6 @@ function Alert({ children }) {
     <>
       <Backdrop elmRef={backdropElm} />
       <div
-        data-cy="modal-information"
         ref={alertElm}
         className="alert fade fixed flex items-center bg-white rounded-xl shadow-card w-[490px] py-[19px] px-[30px]"
       >

@@ -7,7 +7,6 @@ import IconButton from "./IconButton";
 function ActivityItem({ id, title, date, className, onDelete }) {
   return (
     <div
-      data-cy="activity-item"
       className={`h-[235px] flex flex-col justify-between bg-white rounded-xl shadow-card ${
         className || ""
       }`}

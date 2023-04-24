@@ -79,7 +79,7 @@ function TodoList({ activityId, todos, fetcUpdate }) {
     <>
       {data && !data.length > 0 && (
         <div className="flex justify-center items-center">
-          <button data-cy="todo-empty-state" onClick={() => modalToggle(true)}>
+          <button onClick={() => modalToggle(true)}>
             <Image
               src={"/image/todo-empty-state.png"}
               alt="todo-empty-state"
