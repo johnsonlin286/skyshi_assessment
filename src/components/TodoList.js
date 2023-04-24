@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 
 import TodoItem from "./TodoItem";
@@ -20,11 +20,15 @@ function TodoList({ activityId, todos, fetcUpdate }) {
     setData(todos);
   }, [todos]);
 
-  useEffect(() => {
+  const sortData = useCallback(() => {
     if (!data) return;
     const sortResult = sortTodos(sortTodo, data);
-    setData(sortResult);
-  }, [data, setData, sortTodo]);
+    setData(() => [...sortResult]);
+  }, [sortTodo, data, setData]);
+
+  useEffect(() => {
+    sortData();
+  }, [sortTodo]);
 
   const onPatchHandler = async (pickedTodoId, name) => {
     switch (name) {

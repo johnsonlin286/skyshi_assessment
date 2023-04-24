@@ -1,16 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 
 export const SortTodoContext = createContext({
-  sortTodo: "newest",
-  setSortTodo: () => {},
+  sortTodo: "newest" | "oldest" | "asc" | "dsc" | "unfin",
+  changeSortTodo: (sortFilter) => {},
 });
 
 function SortTodoContextProvider({ children }) {
   const [sortTodo, setSortTodo] = useState("newest");
 
+  const changeSortTodo = (sortFilter) => {
+    setSortTodo(sortFilter);
+  };
+
   const value = {
     sortTodo: sortTodo,
-    setSortTodo: setSortTodo,
+    changeSortTodo: changeSortTodo,
   };
 
   return (

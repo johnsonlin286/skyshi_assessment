@@ -36,7 +36,7 @@ const SORT_OPTIONS = [
 ];
 
 function SortOptions({ className }) {
-  const { setSortTodo } = useContext(SortTodoContext);
+  const { changeSortTodo } = useContext(SortTodoContext);
   const optionsElm = useRef(null);
   const [showOptions, setShowOptions] = useState(false);
   const [selectedOpt, setSelectedOpt] = useState("newest");
@@ -60,7 +60,7 @@ function SortOptions({ className }) {
   }, []);
 
   const onChangeSelected = (value) => {
-    setSortTodo(value);
+    changeSortTodo(value);
     setSelectedOpt(value);
     optionsToggle();
   };
